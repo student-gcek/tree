@@ -2,7 +2,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity MUX1 is
-Port ( S : in STD_LOGIC_VECTOR (2 downto 0); D : in STD_LOGIC_VECTOR (7 downto 0); Y : out STD_LOGIC);
+Port ( S : in STD_LOGIC_VECTOR (2 downto 0);
+       D : in STD_LOGIC_VECTOR (7 downto 0); 
+       Y : out STD_LOGIC);
 end MUX1;
 
 architecture Behavioral of MUX1 is begin
