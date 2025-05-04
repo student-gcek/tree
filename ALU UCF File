@@ -1,0 +1,41 @@
+
+# Pin assignments for A[7:0] (8-bit input)
+NET "A[0]"    LOC = "P1";   # A[0] to Pin P1
+NET "A[1]"    LOC = "P2";   # A[1] to Pin P2
+NET "A[2]"    LOC = "P3";   # A[2] to Pin P3
+NET "A[3]"    LOC = "P4";   # A[3] to Pin P4
+NET "A[4]"    LOC = "P5";   # A[4] to Pin P5
+NET "A[5]"    LOC = "P6";   # A[5] to Pin P6
+NET "A[6]"    LOC = "P7";   # A[6] to Pin P7
+NET "A[7]"    LOC = "P8";   # A[7] to Pin P8
+
+# Pin assignments for B[7:0] (8-bit input)
+NET "B[0]"    LOC = "P9";   # B[0] to Pin P9
+NET "B[1]"    LOC = "P10";  # B[1] to Pin P10
+NET "B[2]"    LOC = "P11";  # B[2] to Pin P11
+NET "B[3]"    LOC = "P12";  # B[3] to Pin P12
+NET "B[4]"    LOC = "P13";  # B[4] to Pin P13
+NET "B[5]"    LOC = "P14";  # B[5] to Pin P14
+NET "B[6]"    LOC = "P15";  # B[6] to Pin P15
+NET "B[7]"    LOC = "P16";  # B[7] to Pin P16
+
+# Pin assignments for ALU_Sel[2:0] (3-bit input)
+NET "ALU_Sel[0]"  LOC = "P17";  # ALU_Sel[0] to Pin P17
+NET "ALU_Sel[1]"  LOC = "P18";  # ALU_Sel[1] to Pin P18
+NET "ALU_Sel[2]"  LOC = "P19";  # ALU_Sel[2] to Pin P19
+
+# Pin assignments for ALU_Out[7:0] (8-bit output)
+NET "ALU_Out[0]"  LOC = "P20";  # ALU_Out[0] to Pin P20
+NET "ALU_Out[1]"  LOC = "P21";  # ALU_Out[1] to Pin P21
+NET "ALU_Out[2]"  LOC = "P22";  # ALU_Out[2] to Pin P22
+NET "ALU_Out[3]"  LOC = "P23";  # ALU_Out[3] to Pin P23
+NET "ALU_Out[4]"  LOC = "P24";  # ALU_Out[4] to Pin P24
+NET "ALU_Out[5]"  LOC = "P25";  # ALU_Out[5] to Pin P25
+NET "ALU_Out[6]"  LOC = "P26";  # ALU_Out[6] to Pin P26
+NET "ALU_Out[7]"  LOC = "P27";  # ALU_Out[7] to Pin P27
+
+# Pin assignments for Zero flag (output)
+NET "Zero"        LOC = "P28";  # Zero flag to Pin P28
+
+# Optional clock assignment (if applicable, assuming a clock is being used)
+# NET "clk"  LOC = "P29"  PERIOD = 10 ns;  # Clock pin (example)
