@@ -21,36 +21,33 @@ begin
         variable b_unsigned : unsigned(7 downto 0);
         variable res_unsigned : unsigned(7 downto 0);
     begin
+        -- Convert A and B to unsigned for arithmetic operations
         a_unsigned := unsigned(A);
         b_unsigned := unsigned(B);
         
         case ALU_Sel is
-            when "000" =>  
+            when "000" => 
                 res_unsigned := a_unsigned + b_unsigned;
                 result <= std_logic_vector(res_unsigned);
-            when "001" => 
+            when "001" =>  
                 res_unsigned := a_unsigned - b_unsigned;
                 result <= std_logic_vector(res_unsigned);
-            when "010" =>  
+            when "010" => 
                 result <= A and B;
-            when "011" => 
+            when "011" =>  
                 result <= A or B;
-            when "100" =>  
-                result <= A xor B;
+            when "100" => 
+                result <= not (A and B); 
             when "101" =>  
-                result <= not A;
-            when "110" =>  
-                result <= A(6 downto 0) & '0';
-            when "111" =>  
-                result <= '0' & A(7 downto 1);
-            when others =>
+                result <= not (A or B); 
+            when others =>  
                 result <= (others => '0');
         end case;
     end process;
 
     ALU_Out <= result;
 
-   
+    
     process(result)
     begin
         if result = "00000000" then
