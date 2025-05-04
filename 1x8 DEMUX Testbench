@@ -1,0 +1,80 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity tb_dmux is
+end tb_dmux;
+
+architecture behavior of tb_dmux is
+    component dmux
+        Port (
+            S : in STD_LOGIC_VECTOR (2 downto 0);  
+            I : in STD_LOGIC;                       
+            Y : out STD_LOGIC_VECTOR (7 downto 0)   
+        );
+    end component;
+
+    signal S : STD_LOGIC_VECTOR(2 downto 0);
+    signal I : STD_LOGIC;
+    signal Y : STD_LOGIC_VECTOR(7 downto 0);
+
+begin
+    uut: dmux
+        Port map (
+            S => S,
+            I => I,
+            Y => Y
+        );
+
+    stim_proc: process
+    begin
+        S <= "000"; I <= '1';
+        wait for 10 ns;
+        
+        S <= "001"; I <= '1';
+        wait for 10 ns;
+
+        S <= "010"; I <= '1';
+        wait for 10 ns;
+
+        S <= "011"; I <= '1';
+        wait for 10 ns;
+
+        S <= "100"; I <= '1';
+        wait for 10 ns;
+
+        S <= "101"; I <= '1';
+        wait for 10 ns;
+
+        S <= "110"; I <= '1';
+        wait for 10 ns;
+
+        S <= "111"; I <= '1';
+        wait for 10 ns;
+
+        S <= "000"; I <= '0';
+        wait for 10 ns;
+
+        S <= "001"; I <= '0';
+        wait for 10 ns;
+
+        S <= "010"; I <= '0';
+        wait for 10 ns;
+
+        S <= "011"; I <= '0';
+        wait for 10 ns;
+
+        S <= "100"; I <= '0';
+        wait for 10 ns;
+
+        S <= "101"; I <= '0';
+        wait for 10 ns;
+
+        S <= "110"; I <= '0';
+        wait for 10 ns;
+
+        S <= "111"; I <= '0';
+        wait for 10 ns;
+
+        wait;
+    end process;
+end behavior;
