@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity dmux is
+    Port (
+        S : in STD_LOGIC_VECTOR (2 downto 0);
+        I : in STD_LOGIC;
+        Y : out STD_LOGIC_VECTOR (7 downto 0)
+    );
+end dmux;
+
+architecture Behavioral of dmux is
+begin
+    process(S, I)
+    begin
+        case S is
+            when "000" => Y <= "0000000" & I;
+            when "001" => Y <= "000000" & I & "0";
+            when "010" => Y <= "00000" & I & "00";
+            when "011" => Y <= "0000" & I & "000";
+            when "100" => Y <= "000" & I & "0000";
+            when "101" => Y <= "00" & I & "00000";
+            when "110" => Y <= "0" & I & "000000";
+            when "111" => Y <= I & "0000000";
+            when others => Y <= (others => '0');
+        end case;
+    end process;
+end Behavioral;
