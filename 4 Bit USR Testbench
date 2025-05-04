@@ -1,0 +1,71 @@
+`timescale 1ns / 1ps
+
+module testbench;
+
+    
+    reg clk;
+    reg rst;
+    reg [1:0] mode;
+    reg [3:0] d_in;
+    reg sin_l;
+    reg sin_r;
+
+    
+    wire [3:0] q;
+
+    
+    universal_shift_register uut (
+        .clk(clk),
+        .rst(rst),
+        .mode(mode),
+        .d_in(d_in),
+        .sin_l(sin_l),
+        .sin_r(sin_r),
+        .q(q)
+    );
+
+   
+    always #5 clk = ~clk;  
+
+    
+    initial begin
+       
+        clk = 0;
+        rst = 1;
+        mode = 2'b00;  
+        d_in = 4'b1010; 
+        sin_l = 0;      
+        sin_r = 0;      
+
+        
+        #10 rst = 0;  
+        
+        
+        #10 mode = 2'b00; 
+        #10 $display("Hold Mode: q = %b", q);
+
+        
+        #10 mode = 2'b01; 
+        sin_l = 1;        
+        #10 $display("Shift Left: q = %b", q);
+
+        
+        #10 mode = 2'b10; 
+        sin_r = 1;       
+        #10 $display("Shift Right: q = %b", q);
+
+        
+        #10 mode = 2'b11;
+        d_in = 4'b1100;   
+        #10 $display("Parallel Load: q = %b", q);
+
+       
+        #10 mode = 2'b01; 
+        sin_l = 0;        
+        #10 $display("Shift Left after Parallel Load: q = %b", q);
+
+        
+        #10 $finish;
+    end
+
+endmodule
