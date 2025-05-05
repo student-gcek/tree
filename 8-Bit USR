@@ -1,0 +1,24 @@
+module universal_shift_register (
+    input clk,          
+    input rst,          
+    input [1:0] mode,   
+    input [7:0] d_in,   
+    input sin_l,        
+    input sin_r,        
+    output reg [7:0] q  
+);
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            q <= 8'b00000000;  
+        else begin
+            case (mode)
+                2'b00: q <= q;                   
+                2'b01: q <= {q[6:0], sin_l};     
+                2'b10: q <= {sin_r, q[7:1]};     
+                2'b11: q <= d_in;                
+                default: q <= q;
+            endcase
+        end
+    end
+endmodule
