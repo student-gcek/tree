@@ -1,0 +1,51 @@
+module universal_shift_register_tb;
+    reg clk, rst;
+    reg [1:0] mode;
+    reg [7:0] d_in;
+    reg sin_l, sin_r;
+    wire [7:0] q;
+
+    universal_shift_register uut (
+        .clk(clk),
+        .rst(rst),
+        .mode(mode),
+        .d_in(d_in),
+        .sin_l(sin_l),
+        .sin_r(sin_r),
+        .q(q)
+    );
+
+    always #5 clk = ~clk;
+
+    initial begin
+        $dumpfile("shift_register.vcd");
+        $dumpvars(0, universal_shift_register_tb);
+        
+        clk = 0; rst = 1;
+        mode = 2'b00; d_in = 8'b00000000;
+        sin_l = 0; sin_r = 0;
+
+        #10 rst = 0;
+        $display("Time=%0t | RESET DONE | q = %b", $time, q);
+
+        #10 mode = 2'b11; d_in = 8'b10101010;
+        $display("Time=%0t | PARALLEL LOAD | q = %b", $time, q);
+
+        #10 mode = 2'b00;
+        $display("Time=%0t | HOLD         | q = %b", $time, q);
+
+        #10 mode = 2'b01; sin_l = 1;
+        $display("Time=%0t | SHIFT LEFT   | q = %b", $time, q);
+
+        #10 mode = 2'b01; sin_l = 0;
+        $display("Time=%0t | SHIFT LEFT   | q = %b", $time, q);
+
+        #10 mode = 2'b10; sin_r = 1;
+        $display("Time=%0t | SHIFT RIGHT  | q = %b", $time, q);
+
+        #10 mode = 2'b10; sin_r = 0;
+        $display("Time=%0t | SHIFT RIGHT  | q = %b", $time, q);
+
+        #10 $finish;
+    end
+endmodule
